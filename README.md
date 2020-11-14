@@ -1,16 +1,19 @@
 # ML Drip
-deploy machine learning models in the simplest way possible.
+Deploy a scikit estimator in the simplest way possible.
 
 ## Example
 First, fit an estimator `clf`.
 ```python
-# fit your estimator
+# fit your estimator the way you usually do
+
+X, y = datasets.load_iris()
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 clf = RandomForestClassifier(n_estimators=100)
-clf.fit(X_train,y_train)
+clf.fit(X_train, y_train)
 ```
-Then, instantiate a `Drip` object with `clf`. 
+Instantiate a `Drip` object with `clf`. 
 ```python
-api = Drip(clf, port=8080)
+api = Drip(clf, port=8080)  # clf is exposed
 ```
 Clients can hit `api` for predictions:
 ```python
